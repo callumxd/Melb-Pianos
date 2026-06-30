@@ -511,25 +511,31 @@
     </p>
 
     <form id="piano-form" novalidate>
+      <!-- Web3Forms hidden fields -->
+      <input type="hidden" name="access_key" id="w3f-key" value="94005db0-2c8a-4476-8c00-7d165dea4b9d">
+      <input type="hidden" name="subject" value="Melbourne Pianos – New Listing Submission">
+      <input type="hidden" name="from_name" value="Melbourne Public Pianos">
+      <input type="checkbox" name="botcheck" style="display:none;">
+
       <div class="form-grid">
         <div class="form-row">
           <label for="fname">Your Name</label>
-          <input type="text" id="fname" placeholder="Jane Smith" required>
+          <input type="text" id="fname" name="name" placeholder="Jane Smith" required>
         </div>
         <div class="form-row">
           <label for="femail">Email Address</label>
-          <input type="email" id="femail" placeholder="jane@example.com" required>
+          <input type="email" id="femail" name="email" placeholder="jane@example.com" required>
         </div>
       </div>
 
       <div class="form-row">
         <label for="fphone">Phone (optional)</label>
-        <input type="tel" id="fphone" placeholder="+61 4xx xxx xxx">
+        <input type="tel" id="fphone" name="phone" placeholder="+61 4xx xxx xxx">
       </div>
 
       <div class="form-row">
         <label for="ftype">Submission Type</label>
-        <select id="ftype">
+        <select id="ftype" name="submission_type">
           <option value="">— Select —</option>
           <option value="new">Add a new piano listing</option>
           <option value="update">Update an existing listing</option>
@@ -539,7 +545,7 @@
 
       <div class="form-row">
         <label for="fmessage">Details</label>
-        <textarea id="fmessage" placeholder="Tell us about the piano — location, brand/model, access rules, condition, whether it's tuned regularly, anything that would help other players..."></textarea>
+        <textarea id="fmessage" name="message" placeholder="Tell us about the piano — location, brand/model, access rules, condition, whether it's tuned regularly, anything that would help other players..."></textarea>
       </div>
 
       <div class="form-row">
@@ -553,10 +559,13 @@
         </div>
       </div>
 
-      <button type="submit" class="submit-btn">Submit Listing</button>
+      <button type="submit" class="submit-btn" id="submit-btn">Submit Listing</button>
 
       <div class="form-success" id="form-success">
         ✓ &nbsp;Thank you! Your submission has been received and we'll review it shortly.
+      </div>
+      <div class="form-error" id="form-error" style="display:none; background:#fff0f0; border:1px solid #e57373; padding:1rem; text-align:center; font-size:.9rem; color:#c62828; margin-top:1rem;">
+        Something went wrong. Please try again or email us directly.
       </div>
     </form>
   </div>
@@ -653,18 +662,47 @@ pianos.forEach(p => {
 });
 
 // ── FORM ──────────────────────────────────────────────────────────────
-document.getElementById('piano-form').addEventListener('submit', function(e) {
+document.getElementById('piano-form').addEventListener('submit', async function(e) {
   e.preventDefault();
+
   const name = document.getElementById('fname').value.trim();
   const email = document.getElementById('femail').value.trim();
   if (!name || !email) {
     alert('Please enter your name and email.');
     return;
   }
-  document.getElementById('form-success').style.display = 'block';
-  this.reset();
-  document.getElementById('file-name').textContent = '';
-  setTimeout(() => document.getElementById('form-success').style.display = 'none', 6000);
+
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData);
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const json = await res.json();
+
+    if (json.success) {
+      document.getElementById('form-success').style.display = 'block';
+      document.getElementById('form-error').style.display = 'none';
+      this.reset();
+      document.getElementById('file-name').textContent = '';
+      setTimeout(() => document.getElementById('form-success').style.display = 'none', 8000);
+    } else {
+      throw new Error(json.message);
+    }
+  } catch (err) {
+    document.getElementById('form-error').style.display = 'block';
+    document.getElementById('form-success').style.display = 'none';
+  } finally {
+    btn.textContent = 'Submit Listing';
+    btn.disabled = false;
+  }
 });
 
 // Enable photos if present on disk (graceful fallback already in HTML onerror)

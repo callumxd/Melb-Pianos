@@ -326,7 +326,6 @@
     <!-- 1. Forest Hill Chase -->
     <div class="piano-card">
       <div class="piano-media">
-        <!-- Photo: replace src with your image path e.g. src="forest-hill.jpg" -->
         <img src="forest-hill.jpg" alt="Forest Hill Chase – Alex Steinbach"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="photo-placeholder" style="display:none;">
@@ -511,7 +510,6 @@
     </p>
 
     <form id="piano-form" novalidate>
-      <!-- Web3Forms hidden fields -->
       <input type="hidden" name="access_key" id="w3f-key" value="94005db0-2c8a-4476-8c00-7d165dea4b9d">
       <input type="hidden" name="subject" value="Melbourne Pianos – New Listing Submission">
       <input type="hidden" name="from_name" value="Melbourne Public Pianos">
@@ -582,7 +580,21 @@
 <!-- SCRIPTS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-// ── MAP ──────────────────────────────────────────────────────────────
+const CLOUDINARY_CLOUD = 'zt6vzaqg';
+const CLOUDINARY_PRESET = 'melb-pianos-upload';
+
+async function uploadToCloudinary(file) {
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('upload_preset', CLOUDINARY_PRESET);
+  const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/auto/upload`, {
+    method: 'POST', body: fd
+  });
+  const json = await res.json();
+  if (json.secure_url) return json.secure_url;
+  throw new Error('Cloudinary upload failed');
+}
+
 const map = L.map('map', { zoomControl: true, scrollWheelZoom: false })
   .setView([-37.83, 144.98], 11);
 
@@ -591,7 +603,6 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
   maxZoom: 19
 }).addTo(map);
 
-// Custom icon
 function pianoIcon(color='#c9a84c') {
   return L.divIcon({
     html: `<svg viewBox="0 0 32 32" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
@@ -610,41 +621,11 @@ function pianoIcon(color='#c9a84c') {
 }
 
 const pianos = [
-  {
-    name: "Forest Hill Chase",
-    model: "Alex Steinbach Mini Grand",
-    lat: -37.8496, lng: 145.1618,
-    note: "Play nicely – booking sign but generally welcoming.",
-    condition: "Variable"
-  },
-  {
-    name: "Melbourne Central",
-    model: "Yamaha Baby Grand",
-    lat: -37.8098, lng: 144.9630,
-    note: "Heavy use, maintained regularly. Moved nightly – tuning varies.",
-    condition: "Variable"
-  },
-  {
-    name: "Palace Cinema Como",
-    model: "Kawai Baby Grand",
-    lat: -37.8340, lng: 144.9940,
-    note: "Platinum lounge entrance. Lovely tone and touch.",
-    condition: "Good"
-  },
-  {
-    name: "Westfield Doncaster",
-    model: "Yamaha Baby Grand",
-    lat: -37.7812, lng: 145.1212,
-    note: "Staged near David Jones. Experienced players requested.",
-    condition: "Good"
-  },
-  {
-    name: "Eden Oak, Geelong",
-    model: "Baby Grand",
-    lat: -38.1488, lng: 144.3595,
-    note: "Details welcome – submit an update via the form.",
-    condition: "Unknown"
-  }
+  { name: "Forest Hill Chase", model: "Alex Steinbach Mini Grand", lat: -37.8496, lng: 145.1618, note: "Play nicely – booking sign but generally welcoming.", condition: "Variable" },
+  { name: "Melbourne Central", model: "Yamaha Baby Grand", lat: -37.8098, lng: 144.9630, note: "Heavy use, maintained regularly. Moved nightly – tuning varies.", condition: "Variable" },
+  { name: "Palace Cinema Como", model: "Kawai Baby Grand", lat: -37.8340, lng: 144.9940, note: "Platinum lounge entrance. Lovely tone and touch.", condition: "Good" },
+  { name: "Westfield Doncaster", model: "Yamaha Baby Grand", lat: -37.7812, lng: 145.1212, note: "Staged near David Jones. Experienced players requested.", condition: "Good" },
+  { name: "Eden Oak, Geelong", model: "Baby Grand", lat: -38.1488, lng: 144.3595, note: "Details welcome – submit an update via the form.", condition: "Unknown" }
 ];
 
 pianos.forEach(p => {
@@ -661,41 +642,46 @@ pianos.forEach(p => {
     `);
 });
 
-// ── FORM ──────────────────────────────────────────────────────────────
 document.getElementById('piano-form').addEventListener('submit', async function(e) {
   e.preventDefault();
-
   const name = document.getElementById('fname').value.trim();
   const email = document.getElementById('femail').value.trim();
-  if (!name || !email) {
-    alert('Please enter your name and email.');
-    return;
-  }
-
+  if (!name || !email) { alert('Please enter your name and email.'); return; }
   const btn = document.getElementById('submit-btn');
-  btn.textContent = 'Sending…';
   btn.disabled = true;
-
-  const formData = new FormData(this);
-  const data = Object.fromEntries(formData);
-
+  const files = document.getElementById('ffile').files;
+  let fileLinks = '';
   try {
+    if (files.length > 0) {
+      btn.textContent = `Uploading file${files.length > 1 ? 's' : ''}…`;
+      const urls = await Promise.all(Array.from(files).map(uploadToCloudinary));
+      fileLinks = '\n\nAttached files:\n' + urls.map((u, i) => `File ${i+1}: ${u}`).join('\n');
+    }
+    btn.textContent = 'Sending…';
+    const data = {
+      access_key: document.getElementById('w3f-key').value,
+      subject: 'Melbourne Pianos – New Listing Submission',
+      from_name: 'Melbourne Public Pianos',
+      name: name,
+      email: email,
+      phone: document.getElementById('fphone').value,
+      submission_type: document.getElementById('ftype').value,
+      message: (document.getElementById('fmessage').value || '(no message)') + fileLinks,
+      botcheck: ''
+    };
     const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(data)
     });
     const json = await res.json();
-
     if (json.success) {
       document.getElementById('form-success').style.display = 'block';
       document.getElementById('form-error').style.display = 'none';
       this.reset();
       document.getElementById('file-name').textContent = '';
       setTimeout(() => document.getElementById('form-success').style.display = 'none', 8000);
-    } else {
-      throw new Error(json.message);
-    }
+    } else { throw new Error(json.message); }
   } catch (err) {
     document.getElementById('form-error').style.display = 'block';
     document.getElementById('form-success').style.display = 'none';
@@ -704,8 +690,6 @@ document.getElementById('piano-form').addEventListener('submit', async function(
     btn.disabled = false;
   }
 });
-
-// Enable photos if present on disk (graceful fallback already in HTML onerror)
 </script>
 </body>
 </html>

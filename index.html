@@ -305,10 +305,8 @@
 <div class="keys-divider" aria-hidden="true">
   <script>
     document.currentScript.closest('.keys-divider').innerHTML = Array.from({length:52}, (_,i) => {
-      // Approximate black key positions in a standard 88-key layout pattern
-      const pattern = [0,0,1,0,1,0,0,1,0,1,0,1]; // 0=white only, 1=has black after
       const wki = i % 7;
-      const hasBlack = [0,1,0,0,1,1,0][wki] ? `<div class="bk"></div>` : '';
+      const hasBlack = [1,1,0,1,1,1,0][wki] ? `<div class="bk"></div>` : '';
       return `<div class="wk">${hasBlack}</div>`;
     }).join('');
   </script>
@@ -490,7 +488,7 @@
   <script>
     document.currentScript.closest('.keys-divider').innerHTML = Array.from({length:52}, (_,i) => {
       const wki = i % 7;
-      const hasBlack = [0,1,0,0,1,1,0][wki] ? `<div class="bk" style="background:var(--black)"></div>` : '';
+      const hasBlack = [1,1,0,1,1,1,0][wki] ? `<div class="bk" style="background:var(--black)"></div>` : '';
       return `<div class="wk" style="background:var(--key-white); border-right:1px solid #ccc;">${hasBlack}</div>`;
     }).join('');
   </script>

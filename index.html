@@ -30,6 +30,7 @@
 <meta name="twitter:title" content="Melbourne Public Pianos &#8211; Find & Play">
 <meta name="twitter:description" content="Find public pianos around Melbourne, Victoria &#8212; with photos, videos, and an interactive map.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
   :root {
     --black: #0d0d0d;
@@ -731,6 +732,42 @@ pianos.forEach(p => {
     `);
 });
 
+// &#9472;&#9472; CONFIRMATION EMAIL &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+// To activate receipt emails to submitters:
+// 1. Sign up free at https://emailjs.com (200 emails/month)
+// 2. Add an Email Service (Gmail/Outlook) &#8594; copy the Service ID
+// 3. Create an Email Template &#8594; set the "To Email" field to {{to_email}}
+//    Paste this as the template body:
+//    -------------------------------------------------------
+//    Hi {{to_name}},
+//    Thanks for your submission to Melbourne Public Pianos!
+//    We've received your {{submission_type}} and will review it shortly.
+//    Once approved, we'll add it to the map and listings.
+//    Keep playing,
+//    Melbourne Public Pianos &#8212; www.pianosmelbourne.com
+//    -------------------------------------------------------
+// 4. Go to Account &#8594; API Keys &#8594; copy your Public Key
+// 5. Paste the three values below, then re-upload index.html to GitHub
+const EMAILJS_PUBLIC_KEY  = '';  // e.g. 'AbCdEfGh1234567890XY'
+const EMAILJS_SERVICE_ID  = '';  // e.g. 'service_abc1234'
+const EMAILJS_TEMPLATE_ID = '';  // e.g. 'template_xyz5678'
+if (EMAILJS_PUBLIC_KEY) emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+async function sendConfirmationEmail(toName, toEmail, subType) {
+  if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) return false;
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      to_name:         toName,
+      to_email:        toEmail,
+      submission_type: subType || 'listing suggestion',
+    });
+    return true;
+  } catch (err) {
+    console.warn('Confirmation email failed:', err);
+    return false;
+  }
+}
+
 // &#9472;&#9472; FORM &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 const CLOUDINARY_CLOUD = 'zt6vzaqg';
 const CLOUDINARY_PRESET = 'melb-pianos-upload';
@@ -792,11 +829,17 @@ document.getElementById('piano-form').addEventListener('submit', async function(
     const json = await res.json();
 
     if (json.success) {
-      document.getElementById('form-success').style.display = 'block';
+      const subType = document.getElementById('ftype').selectedOptions[0]?.text || 'listing suggestion';
+      const sent = await sendConfirmationEmail(name, email, subType);
+      const successEl = document.getElementById('form-success');
+      successEl.innerHTML = sent
+        ? '&#10003; &nbsp;Received! A confirmation has been sent to <strong>' + email + '</strong>. We\'ll review your submission and be in touch.'
+        : '&#10003; &nbsp;Thank you! Your submission has been received and we\'ll review it shortly.';
+      successEl.style.display = 'block';
       document.getElementById('form-error').style.display = 'none';
       this.reset();
       document.getElementById('file-name').textContent = '';
-      setTimeout(() => document.getElementById('form-success').style.display = 'none', 8000);
+      setTimeout(() => { successEl.style.display = 'none'; }, 8000);
     } else {
       throw new Error(json.message);
     }

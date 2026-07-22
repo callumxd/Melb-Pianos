@@ -51,7 +51,7 @@
     color: var(--black);
   }
 
-  /* ── NAV ── */
+  /* &#9472;&#9472; NAV &#9472;&#9472; */
   nav {
     position: sticky; top: 0; z-index: 1000;
     background: var(--black);
@@ -66,7 +66,7 @@
   }
   .nav-links a:hover { color: var(--gold); }
 
-  /* ── HERO ── */
+  /* &#9472;&#9472; HERO &#9472;&#9472; */
   .hero {
     background: var(--black);
     color: var(--ivory);
@@ -107,7 +107,7 @@
   }
   .hero-cta:hover { background: var(--gold); color: var(--black); }
 
-  /* ── SECTION TITLES ── */
+  /* &#9472;&#9472; SECTION TITLES &#9472;&#9472; */
   .section-title {
     text-align: center; padding: 4rem 1rem 2.5rem;
   }
@@ -120,7 +120,7 @@
     margin: 1rem auto 0;
   }
 
-  /* ── PIANO GRID ── */
+  /* &#9472;&#9472; PIANO GRID &#9472;&#9472; */
   .piano-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -193,6 +193,28 @@
     padding: .2rem .6rem; border-radius: 2px;
   }
 
+  /* ── VIDEO THUMBNAIL OVERLAY ── */
+  .video-thumb-overlay {
+    position: absolute; inset: 0; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .video-thumb-overlay img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .play-circle {
+    position: relative; z-index: 3;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: rgba(201,168,76,.88);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; color: #0d0d0d; padding-left: 5px;
+    transition: transform .2s, background .2s;
+    box-shadow: 0 2px 12px rgba(0,0,0,.4);
+  }
+  .video-thumb-overlay:hover .play-circle { transform: scale(1.12); background: var(--gold); }
+  .piano-media video.thumb-hidden { display: none; }
+
   /* ── MAP ── */
   .map-section { background: var(--black); padding-bottom: 4rem; }
   .map-section .section-title { color: var(--ivory); }
@@ -203,7 +225,7 @@
     border: 1px solid #333;
   }
 
-  /* ── FORM ── */
+  /* &#9472;&#9472; FORM &#9472;&#9472; */
   .form-section {
     max-width: 720px; margin: 0 auto;
     padding: 0 2rem 6rem;
@@ -268,7 +290,7 @@
     font-size: .9rem; color: #2e7d32; margin-top: 1rem;
   }
 
-  /* ── FOOTER ── */
+  /* &#9472;&#9472; FOOTER &#9472;&#9472; */
   footer {
     background: var(--black); color: #666;
     text-align: center; padding: 2rem;
@@ -276,7 +298,7 @@
   }
   footer a { color: var(--gold); text-decoration: none; }
 
-  /* ── KEYS DIVIDER ── */
+  /* &#9472;&#9472; KEYS DIVIDER &#9472;&#9472; */
   .keys-divider {
     display: flex; height: 28px; overflow: hidden;
     background: var(--black);
@@ -387,7 +409,11 @@
     <!-- 2. Palace Cinema Como -->
     <div class="piano-card">
       <div class="piano-media">
-        <video controls preload="metadata" poster="">
+        <div class="video-thumb-overlay" onclick="startVideo(this)">
+          <img src="palace-cinema-como-thumb.jpg" alt="Palace Cinema Como &#8211; Kawai Baby Grand">
+          <div class="play-circle">&#9654;</div>
+        </div>
+        <video controls preload="none" playsinline class="thumb-hidden">
           <source src="palace-cinema-como.mp4" type="video/mp4">
         </video>
         <span class="piano-badge">Palace Cinema Como</span>
@@ -482,7 +508,11 @@
     <!-- 5. Eden Oak Geelong -->
     <div class="piano-card">
       <div class="piano-media">
-        <video controls preload="metadata">
+        <div class="video-thumb-overlay" onclick="startVideo(this)">
+          <img src="eden-oak-geelong-thumb.jpg" alt="Eden Oak, Geelong &#8211; Upright">
+          <div class="play-circle">&#9654;</div>
+        </div>
+        <video controls preload="none" playsinline class="thumb-hidden">
           <source src="eden-oak-geelong.mp4" type="video/mp4">
         </video>
         <span class="piano-badge">Eden Oak, Geelong</span>
@@ -681,7 +711,7 @@
 <!-- SCRIPTS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-// ── MAP ────────────────────────────────────────────────────────
+// &#9472;&#9472; MAP &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 const map = L.map('map', { zoomControl: true, scrollWheelZoom: false })
   .setView([-37.83, 144.98], 11);
 
@@ -774,7 +804,7 @@ pianos.forEach(p => {
     `);
 });
 
-// ── CONFIRMATION EMAIL ──────────────────────────────────────────
+// &#9472;&#9472; CONFIRMATION EMAIL &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 // To activate receipt emails to submitters:
 // 1. Sign up free at https://emailjs.com (200 emails/month)
 // 2. Add an Email Service (Gmail/Outlook) &#8594; copy the Service ID
@@ -810,7 +840,7 @@ async function sendConfirmationEmail(toName, toEmail, subType) {
   }
 }
 
-// ── FORM ────────────────────────────────────────────────────────
+// &#9472;&#9472; FORM &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 const CLOUDINARY_CLOUD = 'zt6vzaqg';
 const CLOUDINARY_PRESET = 'melb-pianos-upload';
 
@@ -893,6 +923,15 @@ document.getElementById('piano-form').addEventListener('submit', async function(
     btn.disabled = false;
   }
 });
+
+// ── VIDEO THUMBNAIL OVERLAY ─────────────────────────────────────
+function startVideo(overlay) {
+  overlay.style.display = 'none';
+  const video = overlay.nextElementSibling;
+  video.classList.remove('thumb-hidden');
+  video.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+  video.play().catch(() => {});
+}
 
 // Enable photos if present on disk (graceful fallback already in HTML onerror)
 </script>

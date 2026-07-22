@@ -51,7 +51,7 @@
     color: var(--black);
   }
 
-  /* &#9472;&#9472; NAV &#9472;&#9472; */
+  /* ── NAV ── */
   nav {
     position: sticky; top: 0; z-index: 1000;
     background: var(--black);
@@ -66,7 +66,7 @@
   }
   .nav-links a:hover { color: var(--gold); }
 
-  /* &#9472;&#9472; HERO &#9472;&#9472; */
+  /* ── HERO ── */
   .hero {
     background: var(--black);
     color: var(--ivory);
@@ -107,7 +107,7 @@
   }
   .hero-cta:hover { background: var(--gold); color: var(--black); }
 
-  /* &#9472;&#9472; SECTION TITLES &#9472;&#9472; */
+  /* ── SECTION TITLES ── */
   .section-title {
     text-align: center; padding: 4rem 1rem 2.5rem;
   }
@@ -120,7 +120,7 @@
     margin: 1rem auto 0;
   }
 
-  /* &#9472;&#9472; PIANO GRID &#9472;&#9472; */
+  /* ── PIANO GRID ── */
   .piano-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -193,7 +193,7 @@
     padding: .2rem .6rem; border-radius: 2px;
   }
 
-  /* &#9472;&#9472; MAP &#9472;&#9472; */
+  /* ── MAP ── */
   .map-section { background: var(--black); padding-bottom: 4rem; }
   .map-section .section-title { color: var(--ivory); }
   .map-section .section-title .rule { background: var(--gold); }
@@ -203,7 +203,7 @@
     border: 1px solid #333;
   }
 
-  /* &#9472;&#9472; FORM &#9472;&#9472; */
+  /* ── FORM ── */
   .form-section {
     max-width: 720px; margin: 0 auto;
     padding: 0 2rem 6rem;
@@ -268,7 +268,7 @@
     font-size: .9rem; color: #2e7d32; margin-top: 1rem;
   }
 
-  /* &#9472;&#9472; FOOTER &#9472;&#9472; */
+  /* ── FOOTER ── */
   footer {
     background: var(--black); color: #666;
     text-align: center; padding: 2rem;
@@ -276,7 +276,7 @@
   }
   footer a { color: var(--gold); text-decoration: none; }
 
-  /* &#9472;&#9472; KEYS DIVIDER &#9472;&#9472; */
+  /* ── KEYS DIVIDER ── */
   .keys-divider {
     display: flex; height: 28px; overflow: hidden;
     background: var(--black);
@@ -349,42 +349,7 @@
 
   <div class="piano-grid">
 
-    <!-- 1. Forest Hill Chase -->
-    <div class="piano-card">
-      <div class="piano-media">
-        <!-- Photo: replace src with your image path e.g. src="forest-hill.jpg" -->
-        <img src="forest-hill.jpg" alt="Forest Hill Chase &#8211; Alex Steinbach"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="photo-placeholder" style="display:none;">
-          <svg width="56" height="56" viewBox="0 0 24 24" fill="white">
-            <rect x="2" y="10" width="20" height="9" rx="1" fill="white" opacity=".8"/>
-            <rect x="2" y="5" width="20" height="6" rx="1" fill="white" opacity=".5"/>
-            <rect x="4" y="10" width="1.2" height="7" fill="#1a1a1a"/>
-            <rect x="7" y="10" width="1.2" height="7" fill="#1a1a1a"/>
-            <rect x="10" y="10" width="1.2" height="7" fill="#1a1a1a"/>
-            <rect x="14" y="10" width="1.2" height="7" fill="#1a1a1a"/>
-            <rect x="17" y="10" width="1.2" height="7" fill="#1a1a1a"/>
-          </svg>
-          <p>Add photo: forest-hill.jpg</p>
-        </div>
-        <span class="piano-badge">Forest Hill Chase</span>
-        <span class="condition-dot variable" title="Condition: Variable"></span>
-      </div>
-      <div class="piano-info">
-        <h3>Forest Hill Chase</h3>
-        <div class="piano-model">Alex Steinbach &#183; Mini Grand</div>
-        <p>A white Alex Steinbach mini grand tucked inside this quieter suburban shopping centre.
-           Generally in reasonable condition with relatively low use, meaning it tends to hold its
-           tune well. The signage officially states it's to be played when booked, but play nicely
-           and respectfully and the community tends to enjoy it.</p>
-        <div class="piano-meta">
-          <span class="tag">&#127980; Shopping Centre</span>
-          <span class="tag">&#128205; Forest Hill, VIC</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. Melbourne Central -->
+    <!-- 1. Melbourne Central -->
     <div class="piano-card">
       <div class="piano-media">
         <img src="melbourne-central.jpg" alt="Melbourne Central &#8211; Yamaha Baby Grand"
@@ -419,7 +384,7 @@
       </div>
     </div>
 
-    <!-- 3. Palace Cinema Como -->
+    <!-- 2. Palace Cinema Como -->
     <div class="piano-card">
       <div class="piano-media">
         <video controls preload="metadata" poster="">
@@ -439,6 +404,41 @@
         <div class="piano-meta">
           <span class="tag">&#127916; Cinema Lounge</span>
           <span class="tag">&#128205; South Yarra</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Forest Hill Chase -->
+    <div class="piano-card">
+      <div class="piano-media">
+        <!-- Photo: replace src with your image path e.g. src="forest-hill.jpg" -->
+        <img src="forest-hill.jpg" alt="Forest Hill Chase &#8211; Alex Steinbach"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="photo-placeholder" style="display:none;">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="white">
+            <rect x="2" y="10" width="20" height="9" rx="1" fill="white" opacity=".8"/>
+            <rect x="2" y="5" width="20" height="6" rx="1" fill="white" opacity=".5"/>
+            <rect x="4" y="10" width="1.2" height="7" fill="#1a1a1a"/>
+            <rect x="7" y="10" width="1.2" height="7" fill="#1a1a1a"/>
+            <rect x="10" y="10" width="1.2" height="7" fill="#1a1a1a"/>
+            <rect x="14" y="10" width="1.2" height="7" fill="#1a1a1a"/>
+            <rect x="17" y="10" width="1.2" height="7" fill="#1a1a1a"/>
+          </svg>
+          <p>Add photo: forest-hill.jpg</p>
+        </div>
+        <span class="piano-badge">Forest Hill Chase</span>
+        <span class="condition-dot variable" title="Condition: Variable"></span>
+      </div>
+      <div class="piano-info">
+        <h3>Forest Hill Chase</h3>
+        <div class="piano-model">Alex Steinbach &#183; Mini Grand</div>
+        <p>A white Alex Steinbach mini grand tucked inside this quieter suburban shopping centre.
+           Generally in reasonable condition with relatively low use, meaning it tends to hold its
+           tune well. The signage officially states it's to be played when booked, but play nicely
+           and respectfully and the community tends to enjoy it.</p>
+        <div class="piano-meta">
+          <span class="tag">&#127980; Shopping Centre</span>
+          <span class="tag">&#128205; Forest Hill, VIC</span>
         </div>
       </div>
     </div>
@@ -490,7 +490,7 @@
       </div>
       <div class="piano-info">
         <h3>Eden Oak, Geelong</h3>
-        <div class="piano-model">Baby Grand &#183; Geelong</div>
+        <div class="piano-model">Upright &#183; Geelong</div>
         <p>A beautiful piano at Eden Oak in Geelong &#8212; a little further afield for Melbourne players
            but well worth the trip. A stunning instrument in an equally stunning setting.</p>
         <p style="margin-top:.7rem; font-size:.85rem; color:#888; font-style:italic;">&#127929; Callum Wolfenden &#183; Chopin &#8211; Nocturne in C&#9839; minor, <em>Lento con gran espressione</em></p>
@@ -500,7 +500,42 @@
       </div>
     </div>
 
-    <!-- 6. Tempo Piano Room, Brunswick -->
+    <!-- 6. Umbrella Bar, Elsternwick -->
+    <div class="piano-card">
+      <div class="piano-media">
+        <img src="umbrella-bar.jpg" alt="Umbrella Bar Elsternwick &#8211; Yamaha Baby Grand"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="photo-placeholder" style="display:none;">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="white">
+            <rect x="2" y="10" width="20" height="9" rx="1" fill="white" opacity=".8"/>
+            <rect x="2" y="5" width="20" height="6" rx="1" fill="white" opacity=".5"/>
+            <rect x="4" y="10" width="1.2" height="7" fill="#1a1a1a"/>
+            <rect x="7" y="10" width="1.2" height="7" fill="#1a1a1a"/>
+            <rect x="10" y="10" width="1.2" height="7" fill="#1a1a1a"/>
+            <rect x="14" y="10" width="1.2" height="7" fill="#1a1a1a"/>
+            <rect x="17" y="10" width="1.2" height="7" fill="#1a1a1a"/>
+          </svg>
+          <p>Add photo: umbrella-bar.jpg</p>
+        </div>
+        <span class="piano-badge">Umbrella Bar</span>
+        <span class="condition-dot good" title="Condition: Good"></span>
+      </div>
+      <div class="piano-info">
+        <h3>Umbrella Bar</h3>
+        <div class="piano-model">Yamaha &#183; Baby Grand</div>
+        <p>A sleek black Yamaha baby grand, approximately 30 years old, sitting in the warm art-filled surrounds
+           of Umbrella Bar in Elsternwick. Feel free to sit down and play &#8212; guests love the live music and
+           the atmosphere is welcoming. When performers have sets the piano isn&#8217;t freely available, so
+           check what&#8217;s on first. The piano plays well; with the lid fully open the bass can sound a touch
+           tinny, but close the lid and it sounds excellent.</p>
+        <div class="piano-meta">
+          <span class="tag">&#127867; Bar / Live Music</span>
+          <span class="tag">&#128205; Elsternwick, VIC</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Tempo Piano Room, Brunswick -->
     <div class="piano-card">
       <div class="piano-media">
         <img src="brunswick-beale.jpg" alt="Tempo Piano Room Brunswick &#8211; Beale Baby Grand"
@@ -646,7 +681,7 @@
 <!-- SCRIPTS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-// &#9472;&#9472; MAP &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+// ── MAP ────────────────────────────────────────────────────────
 const map = L.map('map', { zoomControl: true, scrollWheelZoom: false })
   .setView([-37.83, 144.98], 11);
 
@@ -704,10 +739,17 @@ const pianos = [
   },
   {
     name: "Eden Oak, Geelong",
-    model: "Baby Grand",
+    model: "Upright",
     lat: -38.1488, lng: 144.3595,
     note: "Details welcome &#8211; submit an update via the form.",
     condition: "Unknown"
+  },
+  {
+    name: "Umbrella Bar",
+    model: "Yamaha Baby Grand",
+    lat: -37.8840, lng: 144.9943,
+    note: "Bar setting &#8211; play to entertain guests. Not available during performer sets.",
+    condition: "Good"
   },
   {
     name: "Tempo Piano Room",
@@ -732,7 +774,7 @@ pianos.forEach(p => {
     `);
 });
 
-// &#9472;&#9472; CONFIRMATION EMAIL &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+// ── CONFIRMATION EMAIL ──────────────────────────────────────────
 // To activate receipt emails to submitters:
 // 1. Sign up free at https://emailjs.com (200 emails/month)
 // 2. Add an Email Service (Gmail/Outlook) &#8594; copy the Service ID
@@ -768,7 +810,7 @@ async function sendConfirmationEmail(toName, toEmail, subType) {
   }
 }
 
-// &#9472;&#9472; FORM &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+// ── FORM ────────────────────────────────────────────────────────
 const CLOUDINARY_CLOUD = 'zt6vzaqg';
 const CLOUDINARY_PRESET = 'melb-pianos-upload';
 

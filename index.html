@@ -171,6 +171,7 @@
   .condition-dot.good { background: #4caf50; }
   .condition-dot.variable { background: #ff9800; }
   .condition-dot.unknown { background: #9e9e9e; }
+  .condition-dot.poor { background: #e53935; }
 
   .piano-info { padding: 1.4rem 1.5rem; }
   .piano-info h3 { font-size: 1.15rem; font-weight: 400; margin-bottom: .3rem; }
@@ -214,6 +215,17 @@
   }
   .video-thumb-overlay:hover .play-circle { transform: scale(1.12); background: var(--gold); }
   .piano-media video.thumb-hidden { display: none; }
+
+/* ── PHOTO CAROUSEL ── */
+.photo-carousel { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.photo-carousel .c-slide { position: absolute; inset: 0; opacity: 0; transition: opacity .4s; }
+.photo-carousel .c-slide.active { opacity: 1; }
+.photo-carousel .c-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.carousel-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 7px; z-index: 5; }
+.carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.45);
+  cursor: pointer; transition: background .2s; border: none; padding: 0; }
+.carousel-dot.active { background: var(--gold); }
 
   /* ── MAP ── */
   .map-section { background: var(--black); padding-bottom: 4rem; }
@@ -603,6 +615,100 @@
       </div>
     </div>
 
+    <!-- 8. Hawthorn Arts Centre -->
+    <div class="piano-card">
+      <div class="piano-media">
+        <div class="photo-carousel">
+          <div class="c-slide active"><img src="hawthorn-arts-centre.jpg" alt="Hawthorn Arts Centre &#8211; Grand Piano"></div>
+          <div class="c-slide"><img src="hawthorn-arts-centre-2.jpg" alt="Hawthorn Arts Centre &#8211; Concert Hall"></div>
+          <div class="carousel-dots">
+            <button class="carousel-dot active" aria-label="Photo 1"></button>
+            <button class="carousel-dot" aria-label="Photo 2"></button>
+          </div>
+        </div>
+        <span class="piano-badge">Hawthorn Arts Centre</span>
+        <span class="condition-dot good" title="Condition: Good"></span>
+      </div>
+      <div class="piano-info">
+        <h3>Hawthorn Arts Centre</h3>
+        <div class="piano-model">Grand Piano &#183; Publicly Available</div>
+        <p>A publicly accessible grand piano in the foyer of Hawthorn Arts Centre. Walk in and play &#8212; no booking required,
+           and the staff are welcoming to musicians. The one rule to be mindful of: don&#8217;t repeat the same phrase,
+           as the space isn&#8217;t intended for rehearsing or practising. If there&#8217;s an event on, the piano may be off-limits,
+           so it&#8217;s worth checking before you make the trip. There is also a Steinway in the main hall, though booking that
+           requires hiring the full hall (including staffing) &#8212; a significant commitment.</p>
+        <div class="piano-meta">
+          <span class="tag">&#127914; Arts Centre</span>
+          <span class="tag">&#128205; Hawthorn, VIC</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Entrecote -->
+    <div class="piano-card">
+      <div class="piano-media">
+        <div class="video-thumb-overlay" onclick="startVideo(this)">
+          <img src="entrecote-thumb.jpg" alt="Entrecote Melbourne &#8211; Grand Piano">
+          <div class="play-circle">&#9654;</div>
+        </div>
+        <video controls preload="none" playsinline class="thumb-hidden">
+          <source src="entrecote.mp4" type="video/mp4">
+        </video>
+        <span class="piano-badge">Entrecote</span>
+        <span class="condition-dot good" title="Condition: Good"></span>
+      </div>
+      <div class="piano-info">
+        <h3>Entrecote</h3>
+        <div class="piano-model">Grand Piano &#183; Performance Only</div>
+        <p>A beautiful grand piano tucked inside Entrecote restaurant, kept in excellent condition and
+           in good tune. The venue regularly hires professional pianists to perform during dinner service,
+           and the sound is genuinely lovely &#8212; a warm, rich tone that lifts the whole room. This one is
+           strictly for the performers, not public playing, but if you&#8217;re dining there it&#8217;s well worth
+           experiencing the live music.</p>
+        <div class="piano-meta">
+          <span class="tag">&#127869; Restaurant</span>
+          <span class="tag">&#9940; Not for public play</span>
+          <span class="tag">&#128205; Melbourne, VIC</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. Monash University -->
+    <div class="piano-card">
+      <div class="piano-media">
+        <div class="photo-carousel">
+          <div class="c-slide active"><img src="monash-university.jpg" alt="Monash University &#8211; Campus Piano"></div>
+          <div class="c-slide"><img src="monash-piano-practice.jpg" alt="Monash University &#8211; Practice Room"></div>
+          <div class="c-slide"><img src="monash-student-theatre.jpg" alt="Monash University &#8211; Student Theatre"></div>
+          <div class="c-slide"><img src="monash-booking.jpg" alt="Monash University &#8211; Booking Room"></div>
+          <div class="carousel-dots">
+            <button class="carousel-dot active" aria-label="Photo 1"></button>
+            <button class="carousel-dot" aria-label="Photo 2"></button>
+            <button class="carousel-dot" aria-label="Photo 3"></button>
+            <button class="carousel-dot" aria-label="Photo 4"></button>
+          </div>
+        </div>
+        <span class="piano-badge">Monash University</span>
+        <span class="condition-dot variable" title="Condition: Variable"></span>
+      </div>
+      <div class="piano-info">
+        <h3>Monash University</h3>
+        <div class="piano-model">Multiple Uprights &#183; Clayton Campus</div>
+        <p>Monash has pianos scattered across its Clayton campus, though quality varies enormously.
+           The six practice room uprights in the basement of the Campus Centre are technically walk-in
+           (booking available, but just showing up works) &#8212; however they&#8217;re in a poor state:
+           heavily out of tune, kept in disarray, and a real disappointment for a university of this calibre.
+           Not really worth the trip. There&#8217;s also an upright on the ground floor of the Campus Centre,
+           belonging to the Monash University Student Theatre.
+           If you&#8217;re a student, the Performing Arts Centre has proper practice rooms that appear to be kept
+           in much better condition &#8212; booking required, and likely student access only.</p>
+        <div class="piano-meta">
+          <span class="tag">&#127979; University</span>
+          <span class="tag">&#128205; Clayton, VIC</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -715,9 +821,9 @@
 const map = L.map('map', { zoomControl: true, scrollWheelZoom: false })
   .setView([-37.83, 144.98], 11);
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-  attribution: '&#169; <a href="https://carto.com/">CARTO</a> &#169; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
-  maxZoom: 19
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+  attribution: '&#169; <a href="https://www.esri.com/">Esri</a> &#169; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
+  maxZoom: 16
 }).addTo(map);
 
 // Custom icon
@@ -787,6 +893,27 @@ const pianos = [
     lat: -37.7680, lng: 144.9595,
     note: "$25/hr or $40 for 2hrs. Keypad entry. Book at temporubato.com.au/tempo-piano-room-book",
     condition: "Good"
+  },
+  {
+    name: "Hawthorn Arts Centre",
+    model: "Grand Piano",
+    lat: -37.8226, lng: 145.0270,
+    note: "Walk in and play freely &#8211; no repeating phrases. Closed off during events. Steinway in main hall requires full hall booking.",
+    condition: "Good"
+  },
+  {
+    name: "Entrecote",
+    model: "Grand Piano",
+    lat: -37.8138, lng: 144.9676,
+    note: "Performance only &#8211; professional pianists during dinner service. Not available for public playing.",
+    condition: "Good"
+  },
+  {
+    name: "Monash University",
+    model: "Multiple Uprights",
+    lat: -37.9107, lng: 145.1341,
+    note: "Campus Centre basement: 6 uprights, walk-in but poor condition. Ground floor: Student Theatre upright. Performing Arts Centre: better rooms, likely student-only booking.",
+    condition: "Variable"
   }
 ];
 
@@ -923,6 +1050,21 @@ document.getElementById('piano-form').addEventListener('submit', async function(
     btn.disabled = false;
   }
 });
+
+// ── PHOTO CAROUSEL ──────────────────────────────────────────────
+function initCarousel(el) {
+  const slides = el.querySelectorAll('.c-slide');
+  const dots   = el.querySelectorAll('.carousel-dot');
+  let cur = 0;
+  function go(n) {
+    slides[cur].classList.remove('active'); dots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active'); dots[cur].classList.add('active');
+  }
+  dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+  setInterval(() => go(cur + 1), 4500);
+}
+document.querySelectorAll('.photo-carousel').forEach(initCarousel);
 
 // ── VIDEO THUMBNAIL OVERLAY ─────────────────────────────────────
 function startVideo(overlay) {

@@ -709,6 +709,73 @@
       </div>
     </div>
 
+    <!-- 11. Heart of Carlton -->
+    <div class="piano-card">
+      <div class="piano-media">
+        <div class="photo-carousel">
+          <div class="c-slide active"><img src="heart-of-carlton.jpg" alt="Heart of Carlton &#8211; Beale Upright"></div>
+          <div class="c-slide"><img src="heart-of-carlton-cafe.jpg" alt="Heart of Carlton &#8211; Cafe Interior"></div>
+          <div class="carousel-dots">
+            <button class="carousel-dot active" aria-label="Photo 1"></button>
+            <button class="carousel-dot" aria-label="Photo 2"></button>
+          </div>
+        </div>
+        <span class="piano-badge">Heart of Carlton</span>
+        <span class="condition-dot variable" title="Condition: Variable"></span>
+      </div>
+      <div class="piano-info">
+        <h3>Heart of Carlton</h3>
+        <div class="piano-model">Beale &#183; Upright</div>
+        <p>A warm walnut Beale upright tucked into one of Melbourne&#8217;s most eccentric and beloved cafes.
+           Heart of Carlton is extremely busy &#8212; famously so, given every meal on the menu is $4.
+           The piano is available for anyone to play and has a light, responsive touch. It was slightly
+           out of tune when last visited, but the character of the place more than makes up for it.
+           Well worth a visit for the piano and the food.</p>
+        <div class="piano-meta">
+          <span class="tag">&#9749; Cafe</span>
+          <span class="tag">&#128205; Carlton, VIC</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. University of Melbourne -->
+    <div class="piano-card">
+      <div class="piano-media">
+        <div class="photo-carousel">
+          <div class="c-slide active"><img src="unimelb-arts.jpg" alt="University of Melbourne &#8211; Arts West Piano"></div>
+          <div class="c-slide"><img src="unimelb-law.jpg" alt="University of Melbourne &#8211; Law Building Piano"></div>
+          <div class="c-slide"><img src="unimelb-law-sign.jpg" alt="University of Melbourne &#8211; No Play 9am&#8211;5pm Sign"></div>
+          <div class="c-slide"><img src="unimelb-society.jpg" alt="Unimelb Piano Society"></div>
+          <div class="carousel-dots">
+            <button class="carousel-dot active" aria-label="Photo 1"></button>
+            <button class="carousel-dot" aria-label="Photo 2"></button>
+            <button class="carousel-dot" aria-label="Photo 3"></button>
+            <button class="carousel-dot" aria-label="Photo 4"></button>
+          </div>
+        </div>
+        <span class="piano-badge">University of Melbourne</span>
+        <span class="condition-dot variable" title="Condition: Variable"></span>
+      </div>
+      <div class="piano-info">
+        <h3>University of Melbourne</h3>
+        <div class="piano-model">Yamaha &#183; Multiple Uprights &#183; Parkville Campus</div>
+        <p>Three uprights across the Parkville campus, all different in character.
+           The first is on the first floor of <strong>Arts West-North Wing (Building 148A)</strong> &#8212;
+           a Yamaha upright in a large open study space. It sees heavy use and is in moderate to poor
+           condition, but the setting is lovely: playing here means a good-sized audience of students drifting through.
+           The second is on the <strong>ground floor of the Law Building</strong>, supplied by the
+           <a href="https://www.instagram.com/unimelbpianosociety" target="_blank" style="color:var(--gold); text-decoration:none;">Unimelb Piano Society</a>.
+           Worth knowing: there&#8217;s a sign requesting no play between 9&#8202;am and 5&#8202;pm to avoid
+           disrupting nearby classes. Outside those hours it&#8217;s fair game.
+           The third is in <strong>Market Hall</strong> &#8212; the main campus food court &#8212; though it was closed when last visited.
+           Believed to be an upright in the wide open eating area.</p>
+        <div class="piano-meta">
+          <span class="tag">&#127979; University</span>
+          <span class="tag">&#128205; Parkville, VIC</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -741,8 +808,9 @@
   <div class="form-section">
     <p class="intro">
       Know of a public piano we haven't listed? Visited one of ours and have an update on its
-      condition? We'd love to hear from you. Fill in the form below and we'll review your
-      submission and add it to the map.
+      condition? We&#8217;d love to hear from you. Fill in the form below, or email us directly at
+      <a href="mailto:callum@pianosmelbourne.com" style="color:var(--gold); text-decoration:none;">callum@pianosmelbourne.com</a>.
+      We&#8217;ll review your submission and add it to the map.
     </p>
 
     <form id="piano-form" novalidate>
@@ -811,6 +879,8 @@
   <p>Melbourne Public Pianos &nbsp;&#183;&nbsp; Spreading the joy of music across Victoria</p>
   <p style="margin-top:.5rem; font-size:.75rem;">
     Know more pianos? <a href="#submit">Add a listing &#8593;</a>
+    &nbsp;&#183;&nbsp;
+    <a href="mailto:callum@pianosmelbourne.com">callum@pianosmelbourne.com</a>
   </p>
 </footer>
 
@@ -913,6 +983,20 @@ const pianos = [
     model: "Multiple Uprights",
     lat: -37.9107, lng: 145.1341,
     note: "Campus Centre basement: 6 uprights, walk-in but poor condition. Ground floor: Student Theatre upright. Performing Arts Centre: better rooms, likely student-only booking.",
+    condition: "Variable"
+  },
+  {
+    name: "Heart of Carlton",
+    model: "Beale Upright",
+    lat: -37.7983, lng: 144.9671,
+    note: "Eclectic $4-menu cafe &#8211; piano free to play anytime. Light touch, slightly out of tune. Very worth the visit.",
+    condition: "Variable"
+  },
+  {
+    name: "University of Melbourne",
+    model: "Yamaha Uprights &#215; 3",
+    lat: -37.7963, lng: 144.9614,
+    note: "Arts West-North (Bldg 148A) 1st floor: moderate condition, open study space. Law Bldg ground floor (Piano Society): no play 9am&#8211;5pm. Market Hall: upright in food court.",
     condition: "Variable"
   }
 ];
